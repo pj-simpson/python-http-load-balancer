@@ -1,0 +1,41 @@
+version: '3'
+services:
+  anthrax1:
+    image: server
+    environment:
+      - APP=anthrax
+    ports:
+      - "8081:5000"
+  anthrax2:
+    image: server
+    environment:
+      - APP=anthrax
+    ports:
+      - "8082:5000"
+  anthrax3:
+    image: server
+    environment:
+      - APP=anthrax
+    ports:
+      - "8083:5000"
+  anthrax4:
+    image: server
+    environment:
+      - APP=anthrax
+    ports:
+      - "8084:5000"
+  metallica1:
+    image: server
+    environment:
+      - APP=metallica
+    ports:
+      - "9081:5000"
+  metallica2:
+    image: server
+    environment:
+      - APP=metallica
+    ports:
+      - "9082:5000"
+
+
+

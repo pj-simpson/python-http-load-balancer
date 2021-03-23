@@ -1,0 +1,73 @@
+hosts:
+  - host: www.anthrax.com
+    algo: round
+    header_rules:
+      add:
+        MyCustomHeader: Test
+      remove:
+        Host: www.anthrax.com
+    param_rules:
+      add:
+        MyCustomParam: Test
+      remove:
+        RemoveMe: Remove
+    cookie_rules:
+      add:
+        ThrashCookie: Rock on!
+      remove:
+        RemoveCookie: Remove
+    rewrite_rules:
+      replace:
+        v1: v2
+    firewall_rules:
+      ip_reject:
+        - 10.192.0.1
+        - 10.192.0.2
+    post_data_rules:
+      add:
+        Token: Test
+      remove:
+        File Placeholder: File
+    servers:
+      - localhost:8081
+      - localhost:8082
+      - localhost:8083
+      - localhost:8084
+  - host: www.metallica.com
+    algo: weight
+    weights:
+      - 1
+      - 10
+      - 1
+    header_rules:
+      remove:
+        Host: www.metallica.com
+    firewall_rules:
+      path_reject:
+        - /messages
+        - /apps
+      header_reject:
+        User-Agent:
+          - Malicious App
+    servers:
+      - localhost:9081
+      - localhost:9082
+      - localhost:8888
+  - host: www.slayer.com
+    servers:
+      - localhost:1111
+      - localhost:1212
+paths:
+  - path: /anthrax
+    servers:
+      - localhost:8081
+      - localhost:8082
+  - path: /metallica
+    servers:
+      - localhost:9081
+      - localhost:9082
+      - localhost:8888
+  - path: /slayer
+    servers:
+      - localhost:1111
+      - localhost:1212
